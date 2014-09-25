@@ -6,7 +6,7 @@ module JtextClassifier
   class MorphemeAnalyzer
     include Singleton
     include Okura
-    MA_DICT_DIR = File.dirname(__FILE__).to_s + "/../../dict/okura-dict"
+    MA_DICT_DIR = "#{HOMEDIR}/dict/okura-dict"
 
     def initialize
       @tagger = Serializer::FormatInfo.create_tagger(MA_DICT_DIR)
