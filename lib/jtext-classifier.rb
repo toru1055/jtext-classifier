@@ -6,3 +6,4 @@ end
 require './lib/jtext-classifier/morpheme-analyzer'
 require './lib/jtext-classifier/document-frequency'
 require './lib/jtext-classifier/category-dict.rb'
+require './lib/jtext-classifier/word-dict.rb'

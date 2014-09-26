@@ -23,7 +23,7 @@ module JtextClassifier
     end
 
     def add_term(term)
-      term.force_encoding("UTF-8")
+      #term.force_encoding("UTF-8")
       unless @dict[term]
         @dict[term] = @dict.length
       end
