@@ -1,4 +1,4 @@
-# coding: utf-8
+# encoding: utf-8
 require 'singleton'
 require File.expand_path(File.join(File.dirname(__FILE__), 'morpheme-analyzer'))
 
@@ -10,14 +10,20 @@ module JtextClassifier
 
     def initialize
       @ma = MorphemeAnalyzer.instance
-      @df = Hash.new(1.0)
+      clear
+    end
+
+    def clear
+      @df = Hash.new(0.0)
       @doc_size = 0
     end
 
     def open_file(filename = DF_DICT_FILE)
+      clear
       open(filename) do |file|
         file.each do |line|
           line.chomp!
+          line.force_encoding("UTF-8")
           k,v = line.split("\t")
           if k == "\001DOCSIZE\001"
             @doc_size = v.to_i
@@ -50,6 +56,7 @@ module JtextClassifier
     end
 
     def idf(term)
+      term.force_encoding("UTF-8")
       if term =~ /^[wｗ]{3,9999}$/
         return 0.0
       end

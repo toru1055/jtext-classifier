@@ -1,4 +1,4 @@
-# coding: utf-8
+# encoding: utf-8
 require 'singleton'
 require 'okura/serializer'
 
@@ -13,7 +13,7 @@ module JtextClassifier
     end
 
     def get_tn(sentence)
-      tn = Hash.new(1)
+      tn = Hash.new(0)
       t = @tagger.parse(sentence)
       t.mincost_path.each do |node|
         m = node.word
