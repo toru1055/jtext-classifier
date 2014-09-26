@@ -5,7 +5,7 @@ require "#{HOMEDIR}/lib/jtext-classifier"
 
 class TestWordDict < Test::Unit::TestCase
   def setup
-    @obj = JtextClassifier::WordDict.new
+    @obj = JtextClassifier::WordDict.instance
     @ma = JtextClassifier::MorphemeAnalyzer.instance
   end
 

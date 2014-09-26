@@ -5,7 +5,7 @@ require "#{HOMEDIR}/lib/jtext-classifier"
 
 class TestCategoryDict < Test::Unit::TestCase
   def setup
-    @obj = JtextClassifier::CategoryDict.new
+    @obj = JtextClassifier::CategoryDict.instance
   end
 
   def test_ok
