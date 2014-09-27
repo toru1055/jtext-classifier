@@ -18,8 +18,8 @@ class TestWordDict < Test::Unit::TestCase
     @obj.save_file
     @obj.clear
     @obj.open_file
-    assert_equal(@obj.idx("すもも"), 0)
-    assert_equal(@obj.idx("もも"), 1)
+    assert_equal(@obj.idx("すもも"), 1)
+    assert_equal(@obj.idx("もも"), 2)
     assert_equal(@obj.idx("eco"), nil)
   end
 end

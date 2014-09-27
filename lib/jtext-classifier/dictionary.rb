@@ -22,10 +22,10 @@ module JtextClassifier
       end
     end
 
-    def add_term(term)
+    def add_term(term, start_id = 0)
       #term.force_encoding("UTF-8")
       unless @dict[term]
-        @dict[term] = @dict.length
+        @dict[term] = @dict.length + start_id
       end
     end
 
@@ -40,7 +40,7 @@ module JtextClassifier
     end
 
     def idx(term)
-      term.force_encoding("UTF-8")
+      #term.force_encoding("UTF-8")
       return @dict[term]
     end
   end

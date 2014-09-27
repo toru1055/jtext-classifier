@@ -56,7 +56,7 @@ module JtextClassifier
     end
 
     def idf(term)
-      term.force_encoding("UTF-8")
+      #term.force_encoding("UTF-8")
       if term =~ /^[wｗ]{3,9999}$/
         return 0.0
       end

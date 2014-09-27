@@ -9,5 +9,9 @@ module JtextClassifier
       super
       @filename = fname
     end
+
+    def add_term(term, start_id = 1)
+      super(term, start_id)
+    end
   end
 end
