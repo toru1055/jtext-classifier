@@ -9,6 +9,10 @@ module JtextClassifier
       @category_dict = CategoryDict.instance
       @df = DocumentFrequency.instance
       @ma = MorphemeAnalyzer.instance
+      open_files
+    end
+
+    def open_files
       @word_dict.open_file
       @category_dict.open_file
       @df.open_file

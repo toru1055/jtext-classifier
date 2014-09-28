@@ -6,6 +6,7 @@ require "#{HOMEDIR}/lib/jtext-classifier"
 class TestFeatureVector < Test::Unit::TestCase
   def setup
     @obj = JtextClassifier::FeatureVector.instance
+    @obj.open_files
   end
   
   def test_ok
