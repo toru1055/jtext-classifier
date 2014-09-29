@@ -3,3 +3,10 @@ test.rb
 test.sh
 *.swp
 /tmp
+
+liblinear-1.94/*.o
+liblinear-1.94/*.a
+liblinear-1.94/*/*.o
+liblinear-1.94/*/*.a
+liblinear-1.94/train
+liblinear-1.94/predict
