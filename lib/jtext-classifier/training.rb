@@ -70,7 +70,7 @@ module JtextClassifier
           end
         end
       end
-      close(outfile)
+      outfile.close
     end
   end
 end

@@ -14,6 +14,6 @@ class TestTraining < Test::Unit::TestCase
   end
 
   def test_make_libsvm
-    @obj.make_libsvm("#{@fname}.head")
+    @obj.make_libsvm(@fname)
   end
 end

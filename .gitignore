@@ -3,6 +3,7 @@ test.rb
 test.sh
 *.swp
 /tmp
+/data
 
 liblinear-1.94/*.o
 liblinear-1.94/*.a
