@@ -5,6 +5,7 @@ module JtextClassifier
     include Singleton
     LIBSVM_TRAIN_FILE = "#{HOMEDIR}/data/svm-train.txt"
     LIBSVM_MODEL_FILE = "#{HOMEDIR}/data/svm-model.txt"
+    TRAIN_COMMAND = "#{HOMEDIR}/liblinear-1.94/train"
     
     def initialize
       @word_dict = WordDict.instance
@@ -70,6 +71,14 @@ module JtextClassifier
         end
       end
       outfile.close
+    end
+
+    def run_training
+      system(
+        "#{TRAIN_COMMAND} -c 0.1 " +
+        "#{LIBSVM_TRAIN_FILE} " +
+        "#{LIBSVM_MODEL_FILE}"
+      )
     end
   end
 end
