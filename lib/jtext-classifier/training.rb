@@ -56,17 +56,16 @@ module JtextClassifier
 
     def make_libsvm(train_file)
       @fv = FeatureVector.instance
-      @progress = 0
       outfile = open(LIBSVM_TRAIN_FILE, "w")
+      outfile.sync = true
       open(train_file) do |file|
         file.each do |line|
-          @progress += 1
-          show_progress
           category, text = category_text(line)
           if text
-            outfile.write(
-              @fv.libsvm_line(category, text) + "\n"
-            )
+            libsvm = @fv.libsvm_line(category, text)
+            if libsvm
+              outfile.write(libsvm + "\n")
+            end
           end
         end
       end
