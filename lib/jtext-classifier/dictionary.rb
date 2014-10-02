@@ -8,6 +8,7 @@ module JtextClassifier
 
     def clear
       @dict = Hash.new(nil)
+      @inverse_dict = Hash.new(nil)
     end
 
     def open_file
@@ -18,6 +19,7 @@ module JtextClassifier
           line.force_encoding("UTF-8")
           term, idx = line.split("\t")
           @dict[term] = idx.to_i
+          @inverse_dict[idx.to_i] = term
         end
       end
     end
@@ -42,6 +44,10 @@ module JtextClassifier
     def idx(term)
       #term.force_encoding("UTF-8")
       return @dict[term]
+    end
+
+    def name(cid)
+      return @inverse_dict[cid]
     end
   end
 end
