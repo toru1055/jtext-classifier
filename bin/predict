@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+HOMEDIR = File.expand_path(File.join(File.dirname(__FILE__), '/..'))
+
+require "#{HOMEDIR}/lib/jtext-classifier"
+require 'optparse'
+
+opt = OptionParser.new
+opt.on('-n NAME', '--name=NAME') do |v|
+  p v
+end
+opt.parse!(ARGV)
+exit 1 unless ARGV.size == 1
+filename = ARGV[0]
+
+p = JtextClassifier::Predictor.instance
+open(filename) do |file|
+  file.each do |line|
+    line.chomp!
+    category = p.predict(line)
+    puts "#{category}\t#{line}\n"
+  end
+end

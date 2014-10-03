@@ -4,7 +4,7 @@ module JtextClassifier
   class Predictor
     include Singleton
     LIBSVM_MODEL_FILE = "#{HOMEDIR}/data/svm-model.txt"
-    THRESHOLD = 0.0
+    THRESHOLD = -0.55
 
     def initialize
       @category_dict = CategoryDict.instance
