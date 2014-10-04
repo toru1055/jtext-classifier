@@ -14,6 +14,7 @@ module JtextClassifier
     end
 
     def make_dictionaries(train_file)
+      puts "== Making dictionaries."
       @progress = 0
       open(train_file) do |file|
         file.each do |line|
@@ -55,6 +56,7 @@ module JtextClassifier
     end
 
     def make_libsvm(train_file)
+      puts "== Making libsvm format file."
       @progress = 0
       @fv = FeatureVector.instance
       @fv.open_files(@data_dir)
@@ -77,6 +79,7 @@ module JtextClassifier
     end
 
     def run_training
+      puts "== Running liblinear train."
       system(
         "#{TRAIN_COMMAND} -c 0.1 " +
         "#{@libsvm_train_file} " +

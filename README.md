@@ -4,12 +4,12 @@ jtext-classifier
 日本語テキスト分類のスクリプト
 
 ## Installation
-Mecabの辞書をダウンロード&解凍  
-http://sourceforge.jp/projects/naist-jdic/releases/53500  
-`tar zxvf ./mecab-naist-jdic-0.6.3b-20111013.tar.gz`
+`$ bundle install`
+`$ ./install.sh`
 
-形態素解析器のコンパイル  
-`./okura-compile.sh /(解凍先のパス)/mecab-naist-jdic-0.6.3b-20111013`
+## Usage
+### Train phase
+`$ ./bin/train (学習用ファイル)`
 
-liblinearをmakeする  
-`./install.sh`
+### Predict phase
+`$ ./bin/predict (予測対象のファイル)`
