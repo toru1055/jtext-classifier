@@ -5,8 +5,9 @@ require "#{HOMEDIR}/lib/jtext-classifier"
 
 class TestTraining < Test::Unit::TestCase
   def setup
-    @fname = "#{HOMEDIR}/tmp/test.tsv"
-    @obj = JtextClassifier::Training.instance
+    @fname = "#{HOMEDIR}/tmp/train.tsv.sample"
+    @data_dir = "#{HOMEDIR}/tmp/data"
+    @obj = JtextClassifier::Training.new(@data_dir)
   end
 
   def test_make_directories

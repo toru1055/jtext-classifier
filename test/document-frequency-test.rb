@@ -6,6 +6,7 @@ require "#{HOMEDIR}/lib/jtext-classifier"
 class TestDocumentFrequency < Test::Unit::TestCase
   def setup
     @obj = JtextClassifier::DocumentFrequency.instance
+    @data_dir = "#{HOMEDIR}/tmp/data"
   end
 
   def test_ok
@@ -16,9 +17,9 @@ class TestDocumentFrequency < Test::Unit::TestCase
     @obj.add_text("すだちともちは別ものです")
     @obj.add_text("すだちもももももものうち")
     t1_idf = @obj.idf("すだち")
-    @obj.save_file
+    @obj.save_file(@data_dir)
     @obj.clear
-    @obj.open_file
+    @obj.open_file(@data_dir)
     t2_idf = @obj.idf("すだち")
     assert_equal(t1_idf, t2_idf)
   end

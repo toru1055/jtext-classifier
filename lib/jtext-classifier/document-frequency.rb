@@ -5,7 +5,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'morpheme-analyzer'))
 module JtextClassifier
   class DocumentFrequency
     include Singleton
-    DF_DICT_FILE = "#{HOMEDIR}/dict/df.txt"
     MIN_DF_NUM = 2
 
     def initialize
@@ -13,12 +12,17 @@ module JtextClassifier
       clear
     end
 
+    def filename
+      return "#{@data_dir}/df.txt"
+    end
+
     def clear
       @df = Hash.new(0.0)
       @doc_size = 0
     end
 
-    def open_file(filename = DF_DICT_FILE)
+    def open_file(data_dir = DEFAULT_DATA_DIR)
+      @data_dir = data_dir
       clear
       open(filename) do |file|
         file.each do |line|
@@ -42,7 +46,8 @@ module JtextClassifier
       end
     end
 
-    def save_file(filename = DF_DICT_FILE)
+    def save_file(data_dir = DEFAULT_DATA_DIR)
+      @data_dir = data_dir
       open(filename, "w") do |file|
         file.write("\001DOCSIZE\001" + "\t" + 
                    @doc_size.to_s + "\n")

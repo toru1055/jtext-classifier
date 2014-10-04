@@ -5,7 +5,9 @@ require "#{HOMEDIR}/lib/jtext-classifier"
 
 class TestPredictor < Test::Unit::TestCase
   def setup
+    @data_dir = "#{HOMEDIR}/tmp/data"
     @obj = JtextClassifier::Predictor.instance
+    @obj.read_models(@data_dir)
   end
 
   def test_predict

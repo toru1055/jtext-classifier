@@ -3,10 +3,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'dictionary.rb'))
 
 module JtextClassifier
   class CategoryDict < Dictionary
-    include Singleton
-    DICT_FILE = "#{HOMEDIR}/dict/category-dict.txt"
-    def initialize(fname = DICT_FILE)
-      super
+    def filename
+      return "#{@data_dir}/category-dict.txt"
     end
   end
 end

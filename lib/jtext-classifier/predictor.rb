@@ -3,20 +3,20 @@ require 'singleton'
 module JtextClassifier
   class Predictor
     include Singleton
-    LIBSVM_MODEL_FILE = "#{HOMEDIR}/data/svm-model.txt"
     THRESHOLD = -0.55
 
     def initialize
       @category_dict = CategoryDict.instance
       @fv = FeatureVector.instance
-      read_svm_model
     end
 
-    def read_svm_model
+    def read_models(data_dir = DEFAULT_DATA_DIR)
+      @fv.open_files(data_dir)
+      libsvm_model_file = "#{data_dir}/svm-model.txt"
       @models = Hash.new
       is_weight_start = false
       wid = 0
-      open(LIBSVM_MODEL_FILE) do |file|
+      open(libsvm_model_file) do |file|
         file.each do |line|
           line.chomp!
           if is_weight_start

@@ -9,13 +9,12 @@ module JtextClassifier
       @category_dict = CategoryDict.instance
       @df = DocumentFrequency.instance
       @ma = MorphemeAnalyzer.instance
-      open_files
     end
 
-    def open_files
-      @word_dict.open_file
-      @category_dict.open_file
-      @df.open_file
+    def open_files(data_dir = DEFAULT_DATA_DIR)
+      @word_dict.open_file(data_dir)
+      @category_dict.open_file(data_dir)
+      @df.open_file(data_dir)
     end
 
     def libsvm_line(category, text)

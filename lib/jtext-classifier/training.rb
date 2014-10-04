@@ -1,13 +1,12 @@
 # encoding: utf-8
-require 'singleton'
 module JtextClassifier
   class Training
-    include Singleton
-    LIBSVM_TRAIN_FILE = "#{HOMEDIR}/data/svm-train.txt"
-    LIBSVM_MODEL_FILE = "#{HOMEDIR}/data/svm-model.txt"
     TRAIN_COMMAND = "#{HOMEDIR}/liblinear-1.94/train"
     
-    def initialize
+    def initialize(data_dir = DEFAULT_DATA_DIR)
+      @data_dir = data_dir
+      @libsvm_train_file = "#{@data_dir}/svm-train.txt"
+      @libsvm_model_file = "#{@data_dir}/svm-model.txt"
       @word_dict = WordDict.instance
       @category_dict = CategoryDict.instance
       @df = DocumentFrequency.instance
@@ -30,14 +29,14 @@ module JtextClassifier
           end
         end
       end
-      @word_dict.save_file
-      @category_dict.save_file
-      @df.save_file
+      @word_dict.save_file(@data_dir)
+      @category_dict.save_file(@data_dir)
+      @df.save_file(@data_dir)
     end
 
     def show_progress
       if @progress % 1000 == 0
-        puts "progress(#{Time.now}): #{progress} lines was read."
+        puts "progress(#{Time.now}): #{@progress} lines was read."
       end
     end
 
@@ -56,11 +55,15 @@ module JtextClassifier
     end
 
     def make_libsvm(train_file)
+      @progress = 0
       @fv = FeatureVector.instance
-      outfile = open(LIBSVM_TRAIN_FILE, "w")
+      @fv.open_files(@data_dir)
+      outfile = open(@libsvm_train_file, "w")
       outfile.sync = true
       open(train_file) do |file|
         file.each do |line|
+          @progress += 1
+          show_progress
           category, text = category_text(line)
           if text
             libsvm = @fv.libsvm_line(category, text)
@@ -76,8 +79,8 @@ module JtextClassifier
     def run_training
       system(
         "#{TRAIN_COMMAND} -c 0.1 " +
-        "#{LIBSVM_TRAIN_FILE} " +
-        "#{LIBSVM_MODEL_FILE}"
+        "#{@libsvm_train_file} " +
+        "#{@libsvm_model_file}"
       )
     end
   end

@@ -14,6 +14,7 @@ exit 1 unless ARGV.size == 1
 filename = ARGV[0]
 
 p = JtextClassifier::Predictor.instance
+p.read_models
 open(filename) do |file|
   file.each do |line|
     line.chomp!

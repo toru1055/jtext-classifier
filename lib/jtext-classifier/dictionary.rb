@@ -1,9 +1,13 @@
 # encoding: utf-8
 module JtextClassifier
   class Dictionary
-    def initialize(fname)
-      clear
-      @filename = fname
+    include Singleton
+    def initialize
+      self.clear
+    end
+
+    def filename
+      return nil
     end
 
     def clear
@@ -11,9 +15,10 @@ module JtextClassifier
       @inverse_dict = Hash.new(nil)
     end
 
-    def open_file
+    def open_file(data_dir = DEFAULT_DATA_DIR)
+      @data_dir = data_dir
       clear
-      open(@filename) do |file|
+      open(filename) do |file|
         file.each do |line|
           line.chomp!
           line.force_encoding("UTF-8")
@@ -31,9 +36,9 @@ module JtextClassifier
       end
     end
 
-    def save_file
-      p @filename
-      open(@filename, "w") do |file|
+    def save_file(data_dir = DEFAULT_DATA_DIR)
+      @data_dir = data_dir
+      open(filename, "w") do |file|
         @dict.each do |term, idx|
           file.write(term.to_s + "\t" + 
                      idx.to_s + "\n")

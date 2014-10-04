@@ -12,6 +12,7 @@ end
 opt.parse!(ARGV)
 exit 1 unless ARGV.size == 1
 filename = ARGV[0]
-JtextClassifier::Training.instance.make_dictionaries(filename)
-JtextClassifier::Training.instance.make_libsvm(filename)
-JtextClassifier::Training.instance.run_training
+tr = JtextClassifier::Training.new
+tr.make_dictionaries(filename)
+tr.make_libsvm(filename)
+tr.run_training

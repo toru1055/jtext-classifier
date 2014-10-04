@@ -1,6 +1,7 @@
 # encoding: utf-8
 module JtextClassifier
   HOMEDIR = File.expand_path(File.join(File.dirname(__FILE__), '/..'))
+  DEFAULT_DATA_DIR = "#{HOMEDIR}/data"
 end
 
 require './lib/jtext-classifier/morpheme-analyzer'
