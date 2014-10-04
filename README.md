@@ -13,3 +13,16 @@ jtext-classifier
 
 ### Predict phase
 `$ ./bin/predict (予測対象のファイル)`
+
+## File format
+### Train file(tsv file)
+```
+(category)¥t(text)¥n
+...
+```
+
+### Predict file(tsv file)
+```
+(id)¥t(text)¥n
+...
+```
