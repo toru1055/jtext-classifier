@@ -4,7 +4,7 @@ jtext-classifier
 日本語テキスト分類のスクリプト
 
 ## Installation
-`$ bundle install`
+`$ bundle install`  
 `$ ./install.sh`
 
 ## Usage
