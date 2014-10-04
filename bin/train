@@ -4,6 +4,7 @@ HOMEDIR = File.expand_path(File.join(File.dirname(__FILE__), '/..'))
 
 require "#{HOMEDIR}/lib/jtext-classifier"
 require 'optparse'
+require 'fileutils'
 
 data_dir = nil
 opt = OptionParser.new
@@ -18,6 +19,7 @@ unless ARGV.size == 1
 end
 filename = ARGV[0]
 if data_dir
+  FileUtils.mkdir_p(data_dir)
   tr = JtextClassifier::Training.new(data_dir)
 else
   tr = JtextClassifier::Training.new
