@@ -2,9 +2,11 @@ jtext-classifier
 ================
 
 日本語テキスト分類のスクリプト
-
 ## Installation
+Gemfileのインストール  
 `$ bundle install`  
+
+LiblinearとOkuraのコンパイル  
 `$ ./install.sh`
 
 ## Usage
