@@ -5,14 +5,23 @@ HOMEDIR = File.expand_path(File.join(File.dirname(__FILE__), '/..'))
 require "#{HOMEDIR}/lib/jtext-classifier"
 require 'optparse'
 
+data_dir = nil
 opt = OptionParser.new
-opt.on('-n NAME', '--name=NAME') do |v|
-  p v
+opt.on('-d DATA_DIRECTORY', '--data-dir=DATA_DIRECTORY') do |v|
+  puts "Data directory was set to '#{v}'"
+  data_dir = v
 end
 opt.parse!(ARGV)
-exit 1 unless ARGV.size == 1
+unless ARGV.size == 1
+  warn "[Error] Irregular arguments."
+  exit 1
+end
 filename = ARGV[0]
-tr = JtextClassifier::Training.new
+if data_dir
+  tr = JtextClassifier::Training.new(data_dir)
+else
+  tr = JtextClassifier::Training.new
+end
 tr.make_dictionaries(filename)
 tr.make_libsvm(filename)
 tr.run_training

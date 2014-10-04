@@ -19,7 +19,7 @@ module JtextClassifier
         file.each do |line|
           @progress += 1
           show_progress
-          category, text = category_text(line)
+          category, text = Training.category_text(line)
           if text
             @category_dict.add_term(category)
             @ma.get_tf(text).each do |term, freq|
@@ -40,7 +40,7 @@ module JtextClassifier
       end
     end
 
-    def category_text(line)
+    def self.category_text(line)
       line.chomp!
       line.force_encoding("UTF-8")
       category, text_array = line.split("\t")
@@ -64,7 +64,7 @@ module JtextClassifier
         file.each do |line|
           @progress += 1
           show_progress
-          category, text = category_text(line)
+          category, text = Training.category_text(line)
           if text
             libsvm = @fv.libsvm_line(category, text)
             if libsvm

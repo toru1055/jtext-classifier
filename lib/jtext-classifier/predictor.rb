@@ -46,7 +46,7 @@ module JtextClassifier
         fv.each do |wid, tfidf|
           score += tfidf * model[wid]
         end
-        if score > category_score
+        if fv.size > 0 && score > category_score
           category_score = score
           category = @category_dict.name(cid)
         end
