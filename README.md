@@ -1,7 +1,8 @@
 jtext-classifier
 ================
 
-日本語テキスト分類のスクリプト
+Rubyの日本語テキスト分類スクリプト
+
 ## Installation
 Gemfileのインストール  
 `$ bundle install`  
@@ -16,7 +17,7 @@ LiblinearとOkuraのコンパイル
 ### Predict phase
 `$ ./bin/predict /path/to/predict-file.tsv`
 
-## File format
+## Input file format
 ### Train file(tsv file)
 ```
 (category)¥t(text)¥n
