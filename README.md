@@ -9,10 +9,10 @@ jtext-classifier
 
 ## Usage
 ### Train phase
-`$ ./bin/train (学習用ファイル)`
+`$ ./bin/train /path/to/train-file.tsv`
 
 ### Predict phase
-`$ ./bin/predict (予測対象のファイル)`
+`$ ./bin/predict /path/to/predict-file.tsv`
 
 ## File format
 ### Train file(tsv file)
