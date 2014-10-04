@@ -1,7 +1,7 @@
 jtext-classifier
 ================
 
-Rubyの日本語テキスト分類（文書分類）スクリプト
+Rubyの日本語テキスト分類（文書分類）ライブラリ
 
 ## Installation
 Gemfileのインストール  
